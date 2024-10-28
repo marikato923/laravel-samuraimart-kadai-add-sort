@@ -5,7 +5,7 @@
     <a href="{{ route('products.index') }}">Back</a>
 </div>
 
-<form action="{{ route('products.store) }}" method="POST">
+<form action="{{ route('products.store') }}" method="POST">
     @csrf
 
     <div>
@@ -19,6 +19,14 @@
     <div>
         <strong>Price:</strong>
         <input type="number" name="price" placeholder="Price">
+    </div>
+    <div>
+        <strong>Category:</strong>
+        <select name="category_id">
+            @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
     </div>
     <div>
         <button type="submit">Submit</button>
