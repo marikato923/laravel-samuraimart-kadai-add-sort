@@ -42,13 +42,27 @@
                         </button>
                     </div>
                     <div class="col-5">
-                        <a href="/products/{{ $product->id }}/favorite" class="btn samuraimart-favorite-button text-dark w-100">
+                        @if(Auth::user()->favorite_products()->where('product_id', $product->id)->exists())
+                          <a href="{{ route('favorites.destroy', $product->id) }}" class="btn samuraimart-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();">
+                            <i class="fa fa-heart"></i>
+                            お気に入り解除
+                          </a>
+                        @else
+                        <a href="{{ route('favorites.store', $product->id) }}" class="btn samuraimart-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();">
                             <i class="fa fa-heart"></i>
                             お気に入り
                         </a>
+                        @endif
                     </div>
                 </div>
             </form>
+              <form action="{{ route('favorites.destroy', $product->id) }}" class="favorites-destroy-form" method="POST" class="d-none">
+                @csrf
+                @method('DELETE')
+              </form>
+              <form id="favorites-store-form" action="{{ route('favorites.store', $product->id) }}" method="POST" class="d-none">
+                @csrf
+              </form>
             @endauth
         </div>
 
