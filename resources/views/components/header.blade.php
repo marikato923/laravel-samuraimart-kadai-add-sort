@@ -3,9 +3,9 @@
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{asset('img/logo.jpg')}}">
         </a>
-        <form class="row g-1">
+        <form action="{{ route('products.index') }}" method="GET" class="row g-1">
             <div class="col-auto">
-                <input class="form-control samuraimart-header-search-input">
+                <input class="form-control samuraimart-header-search-input" name="keyword">
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn samuraimart-header-search-button"><i class="fas fa-search samuraimart-header-search-icon"></i></button>
