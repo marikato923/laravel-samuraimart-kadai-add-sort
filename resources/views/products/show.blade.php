@@ -41,6 +41,7 @@
                             カートに追加
                         </button>
                     </div>
+                    {{-- あとでお気に入りボタンを非同期処理にしたい --}}
                     <div class="col-5">
                         @if(Auth::user()->favorite_products()->where('product_id', $product->id)->exists())
                           <a href="{{ route('favorites.destroy', $product->id) }}" class="btn samuraimart-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();">
