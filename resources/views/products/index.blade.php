@@ -16,6 +16,12 @@
                 <h1>"{{ $keyword }}"の検索結果{{$total_count}}件</h1>
             @endif
         </div>
+        <div>
+            Sort By
+            @sortablelink('id', 'ID')
+            @sortablelink('price', 'Price')
+            @sortablelink('created_at', '作成日時')
+        </div>
         <div class="container mt-4">
             <div class="row w-100">
                 @foreach($products as $product)
