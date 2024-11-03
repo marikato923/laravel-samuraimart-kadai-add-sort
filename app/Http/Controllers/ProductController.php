@@ -14,7 +14,7 @@ class ProductController extends Controller
         $keyword = $request->keyword;
 
         if($request->category !== null) {
-            $products = Product::where('category_id', $request->category)->sortable()->paginate(15);
+            $products = Product::where('category_id', $request->category)->sortable()->paginate(16);
             $total_count = Product::where('category_id', $request->category)->count();
             $category = Category::find($request->category);
         } elseif ($keyword !== null) {
@@ -22,7 +22,7 @@ class ProductController extends Controller
             $total_count = $products->total();
             $category = null;
         } else {
-            $products = Product::sortable()->paginate(15);
+            $products = Product::sortable()->paginate(16);
             $total_count = "";
             $category = null;
         }
