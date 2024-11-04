@@ -7,8 +7,10 @@ use App\Models\Review;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\WebController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Route;
+use Monolog\Processor\WebProcessor;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function() {
-    return redirect()->route('products.index'); 
-});
+Route::get('/', [WebController::class, 'index'])->name('top');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
