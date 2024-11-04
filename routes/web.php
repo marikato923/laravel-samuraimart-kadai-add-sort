@@ -48,5 +48,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('users/mypage', 'update')->name('mypage.update');
         Route::get('users/mypage/password/edit', 'edit_password')->name('mypage.edit_password');
         Route::put('users/mypage/password', 'update_password')->name('mypage.update_password');  
+        Route::get('users/mypage/favorite', 'favorite')->name('mypage.favorite');
     });
 });
