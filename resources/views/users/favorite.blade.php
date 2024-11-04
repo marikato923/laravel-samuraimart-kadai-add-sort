@@ -30,6 +30,13 @@
                     </form>
                 </div>
                 <div class="col-md-3 d-flex align-items-center justify-content-end">
+                    <form method="POST" action="{{ route('carts.store') }}" class="m-3 align-items-end">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $favorite_product->id }}">
+                        <input type="hidden" name="name" value="{{ $favorite_product->name }}">
+                        <input type="hidden" name="price" value="{{ $favorite_product->price }}">
+                        <input type="hidden" name="qty" value="1">
+                        <input type="hidden" name="weight" value="0">
                     <button type="submit" class="btn samuraimart-favorite-add-cart">カートに入れる</button>
                 </div>
             @endforeach
