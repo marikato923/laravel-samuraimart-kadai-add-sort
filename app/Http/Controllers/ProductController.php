@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\MajorCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,20 +18,23 @@ class ProductController extends Controller
             $products = Product::where('category_id', $request->category)->sortable()->paginate(16);
             $total_count = Product::where('category_id', $request->category)->count();
             $category = Category::find($request->category);
+            $major_category = MajorCategory::find($category->major_category_id);
         } elseif ($keyword !== null) {
-            $products = Product::where('name', 'like', "%{$keyword}%")->sortable()->paginate(15);
+            $products = Product::where('name', 'like', "%{$keyword}%")->sortable()->paginate(16);
             $total_count = $products->total();
             $category = null;
+            $major_category = null;
         } else {
             $products = Product::sortable()->paginate(16);
             $total_count = "";
             $category = null;
+            $najor_category = null;
         }
 
         $categories = Category::all();
-        $major_category_names = Category::pluck('major_category_name')->unique();
+        $major_categories = MajorCategory::all();
 
-        return view('products.index', compact('products', 'category', 'categories', 'major_category_names', 'total_count', 'keyword'));
+        return view('products.index', compact('products', 'category', 'major_category', 'categories', 'major_categories', 'total_count', 'keyword'));
     }
 
     public function create()
