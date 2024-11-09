@@ -76,6 +76,23 @@
             <hr class="w-100">
             <h3 class="float-left">カスタマーレビュー</h3>
         </div>
+        <div class="offset-1 col-11">
+            <!-- 平均スコアの表示部分を追加 -->
+            <div class="d-flex align-items-center">
+                <p class="ml-3">
+                    <!-- レビューの平均スコアを表示 -->
+                    @if ($reviews->count() > 0)
+                        @php
+                            // 平均スコアを計算し、小数点2桁に丸める
+                            $averageScore = round($reviews->avg('score'), 2);
+                        @endphp
+                        <span>平均評価: {{ str_repeat('★', round($averageScore)) }} ({{ $averageScore }})</span>
+                    @else
+                        <span>レビューがありません</span>
+                    @endif
+                </p>
+            </div>
+        </div>
 
         <div class="offset-1 col-10">
             <div class="row">
@@ -102,12 +119,15 @@
                             <option value="2" class="review-score-color">★★</option>
                             <option value="1" class="review-score-color">★</option>
                         </select>
+                        @error('score')
+                        <strong>スコアを入力してください</strong>
+                        @enderror
                         <h4>タイトル</h4>
                         @error('title')
                             <strong>タイトルを入力してください</strong>
                         @enderror
                         <input type="text" name='title' class="form-control m-2">
-                        <h4>レビュー内容</h4>
+                        <p>レビュー内容</p>
                         @error('content')
                             <strong>レビュー内容を入力してください</strong>
                         @enderror

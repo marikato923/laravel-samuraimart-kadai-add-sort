@@ -35,7 +35,7 @@ h3 {
     line-height: normal;
     letter-spacing: 0.04px;
 }
-  
+ 
 big {
     font-size: 16px;
     font-weight: 500;
@@ -80,10 +80,10 @@ label {
     color: #000000;
 }
   
-  .samuraimart-require-input-label {
+.samuraimart-require-input-label {
     border-radius: 1px;
     background-color: #e2001b;
-  }
+}
   
 .samuraimart-require-input-label-text {
     font-size: 14px;
