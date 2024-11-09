@@ -204,6 +204,9 @@ label {
 
 
 /* サイドバー */
+.major-category-name {
+    margin-left: 20px;
+}
 .samuraimart-sidebar-category-label {
     display: block;
     width: 156px;
@@ -214,6 +217,7 @@ label {
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
+    margin-left: 20px;
     margin-bottom: 10px;
     color: #707070;
     text-decoration: none;
