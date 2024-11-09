@@ -151,18 +151,6 @@ label {
     color: #0fbe9f;
 }
 
-.samuraimart-sidebar-category-label {
-    width: 156px;
-    height: 20px;
-    font-size: 13px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #191919;
-}
-
 .samuraimart-favorite-add-cart {
     border-radius: 2px;
     color: #ffffff;
@@ -190,4 +178,60 @@ label {
     object-fit: cover;
 }
 
+#view-more {
+    color: #707070;
+    padding: 8px, 10px;
+    border-radius: 5px;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+}
+
+#view-more:hover {
+    background-color: #0fbe9f;
+    color: white;
+}
+
+#view-more:a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#view-more:hover a {
+    background-color: #0fbe9f;
+    color: white;
+}
+
+
+/* サイドバー */
+.samuraimart-sidebar-category-label {
+    display: block;
+    width: 156px;
+    height: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-bottom: 10px;
+    color: #707070;
+    text-decoration: none;
+    padding: 8px, 16px;
+    border-radius: 5px;
+}
+
+.samuraimart-sidebar-category-label:hover {
+    background-color: #0fbe9f;
+    color: white;
+}
+
+.samuraimart-sidebar-category-label a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.samuraimart-sidebar-category-label:hover a {
+    color: white;
+}
  

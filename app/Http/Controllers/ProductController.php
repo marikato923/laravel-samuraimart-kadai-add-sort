@@ -28,7 +28,7 @@ class ProductController extends Controller
             $products = Product::sortable()->paginate(16);
             $total_count = "";
             $category = null;
-            $najor_category = null;
+            $major_category = null;
         }
 
         $categories = Category::all();
