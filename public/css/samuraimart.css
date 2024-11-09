@@ -184,4 +184,10 @@ label {
 
 }
 
+/* インデックスページ */
+.img-thumbnail {
+    height: 200px;
+    object-fit: cover;
+}
+
  
