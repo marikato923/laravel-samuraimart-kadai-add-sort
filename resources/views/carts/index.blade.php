@@ -20,27 +20,64 @@
 
         <hr>
 
-        <div class="row">
-            @foreach ($cart as $product)
-            <div class="col-md-2 mt-2 d-flex align-items-center">
-                <a href="{{route('products.show', $product->id)}}">
-                    @if ($product->options->image)
-                    <img src="{{ asset($product->options->image) }}" class="img-fluid w-100">
-                    @else
-                    <img src="{{ asset('img/dummy.png')}}" class="img-fluid w-100">
-                    @endif
-                </a>
+        <div class="container">
+            <div class="row">
+                @foreach ($cart as $product)
+                <div class="col-md-12 mb-4">
+                    <div class="card p-3">
+                        <div class="row align-items-center">
+                            <!-- 商品画像 -->
+                            <div class="col-md-2 d-flex align-items-center justify-content-center">
+                                <a href="{{ route('products.show', $product->id) }}">
+                                    @if ($product->options->image)
+                                    <img src="{{ asset($product->options->image) }}" class="img-fluid img-thumbnail w-100">
+                                    @else
+                                    <img src="{{ asset('img/dummy.png')}}" class="img-fluid img-thumbnail w-100">
+                                    @endif
+                                </a>
+                            </div>
+        
+                            <!-- 商品名 -->
+                            <div class="col-md-4">
+                                <h4 class="mb-0">{{ $product->name }}</h4>
+                            </div>
+        
+                            <!-- 削除ボタン -->
+                            <div class="col-md-2 text-center">
+                                <form action="{{ route('cart.remove', $product->rowId) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">削除</button>
+                                </form>
+                            </div>
+        
+                            <!-- 数量 -->
+                            <div class="col-md-2 text-center">
+                                <span>数量: {{ $product->qty }}</span>
+                            </div>
+        
+                            <!-- 合計金額 -->
+                            <div class="col-md-2 text-center">
+                                <span>￥{{ number_format($product->qty * $product->price) }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             </div>
-            <div class="col-md-6 mt-4 d-flex align-items-center">
-                <h3 class="mt-4">{{$product->name}}</h3>
+        </div>
+         
+        <hr>
+ 
+        <div class="offset-8 col-4">
+            <div class="row">
+                <div class="col-6">
+                    <h2>送料</h2>
+                </div>
+                <div class="col-6">
+                    <h2>￥{{ $carriage_cost }}</h2>
+                </div>
             </div>
-            <div class="col-md-2">
-                <h3 class="w-100 mt-4">{{$product->qty}}</h3>
-            </div>
-            <div class="col-md-2">
-                <h3 class="w-100 mt-4">￥{{$product->qty * $product->price}}</h3>
-            </div>
-            @endforeach
         </div>
 
         <hr>
@@ -61,7 +98,7 @@
         <form method="post" action="{{route('carts.destroy')}}" class="d-flex justify-content-end mt-3">
             @csrf
             <input type="hidden" name="_method" value="DELETE">
-            <a href="{{route('top')}}" class="btn samuraimart-favorite-button border-dark text-dark mr-3">
+            <a href="" class="btn samuraimart-favorite-button border-dark text-dark mr-3">
                 買い物を続ける
             </a>
             @if ($total > 0)

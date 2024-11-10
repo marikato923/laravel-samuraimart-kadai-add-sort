@@ -19,12 +19,22 @@ class CartController extends Controller
         $cart = Cart::instance(Auth::user()->id)->content();
  
         $total = 0;
+        $has_carriage_cost = false;
+        $carriage_cost = 0;
 
         foreach ($cart as $c) {
             $total += $c->qty * $c->price;
+            if ($c->options->carriage) {
+                $has_carriage_cost = true;
+            }
         }
 
-        return view('carts.index', compact('cart', 'total'));
+        if($has_carriage_cost) {
+            $total += env('CARRIAGE');
+            $carriage_cost = env('CARRIAGE');
+        }
+
+        return view('carts.index', compact('cart', 'total', 'carriage_cost'));
     }
 
     /**
@@ -44,6 +54,7 @@ class CartController extends Controller
                 'weight' => $request->weight, 
                 'options' => [
                     'image' => $request->image,
+                    'carriage' => $request->carriage,
                 ]
             ] 
         );
@@ -69,6 +80,18 @@ class CartController extends Controller
 
         Cart::instance(Auth::user()->id)->destroy();
 
-        return to_route('carts.index');
+        return to_route('carts.index');// ->with('success', 'ご注文が完了しました。');
     }
 }
+
+   // カート内の商品を削除
+
+    // public function remove($rowId)
+    // {
+    //      if (Cart::get($rowId)) {
+    //         // Cart::remove($rowId);
+    //         // return redirect()->route('cart.index')->with('success', '商品をカートから削除しました。');
+    //      } else {
+    //         return redirect()->route('cart.index')->with('error', '指定された商品はカートにありません。');
+    //     }
+    // }

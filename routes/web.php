@@ -12,6 +12,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Route;
 use Monolog\Processor\WebProcessor;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,5 +59,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('users/carts', 'index')->name('carts.index');
         Route::post('users/carts', 'store')->name('carts.store');
         Route::delete('users/carts', 'destroy')->name('carts.destroy');
+        Route::delete('cart/remove/{rowId}', [CartController::class, 'remove'])->name('cart.remove');
     });
 });
