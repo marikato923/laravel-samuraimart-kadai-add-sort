@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\ShoppingCart;
+use Encore\Admin\Grid\Filter\Where;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -85,5 +90,41 @@ class UserController extends Controller
     {
         Auth::user()->delete();
         return redirect('/');
+    }
+
+    public function cart_history_index(Request $request)
+    {
+        $page = $request->page != null ? $request->page : 1;
+        $user_id = Auth::user()->id;
+        $billings = ShoppingCart::getCurrentUserOrders($user_id);
+        $total = count($billings);
+        $billings = new LengthAwarePaginator(array_slice($billings, ($page - 1) * 15, 15), $total, 15, $page, array('path' => $request->url()));
+
+        return view('users.cart_history_index', compact('billings', 'total'));
+    }
+
+    public function cart_history_show(Request $request)
+    {
+        $num = $request->num;
+        $user_id = Auth::user()->id;
+        $cart_info = DB::table('shoppingcart')->where('instance', $user_id)->where('number', $num)->get()->first();
+        Cart::instance($user_id)->restore($cart_info->identifier);
+        $cart_contents = Cart::content();
+        Cart::instance($user_id)->store($cart_info->identifier);
+        Cart::destroy();
+
+        DB::table('shoppingcart')->where('instance', $user_id)
+            ->where('number', null)
+            ->update(
+                [
+                'code' => $cart_info->code,
+                'number' => $num,
+                'price_total' => $cart_info->price_total,
+                'qty' => $cart_info->qty,
+                'buy_flag' => $cart_info->buy_flag,
+                'updated_at' => $cart_info->updated_at
+                ]
+                );
+        return view('users.cart_history_show', compact('cart_contents', 'cart_info'));
     }
 }

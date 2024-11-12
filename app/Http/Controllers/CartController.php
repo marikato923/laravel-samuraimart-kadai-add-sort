@@ -61,37 +61,4 @@ class CartController extends Controller
 
         return to_route('products.show', $request->get('id'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
-    {
-        $user_shoppingcarts = DB::table('shoppingcart')->where('instance', Auth::user()->id)->get();
-        $count = $user_shoppingcarts->count();
-
-        $count += 1;
-        Cart::instance(Auth::user()->id)->store($count);
-
-        DB::table('shoppingcart')->where('instance', Auth::user()->id)->where('number', null)->update(['number' => $count, 'buy_flag' => true]);
-
-        Cart::instance(Auth::user()->id)->destroy();
-
-        return to_route('carts.index');// ->with('success', 'ご注文が完了しました。');
-    }
 }
-
-   // カート内の商品を削除
-
-    // public function remove($rowId)
-    // {
-    //      if (Cart::get($rowId)) {
-    //         // Cart::remove($rowId);
-    //         // return redirect()->route('cart.index')->with('success', '商品をカートから削除しました。');
-    //      } else {
-    //         return redirect()->route('cart.index')->with('error', '指定された商品はカートにありません。');
-    //     }
-    // }

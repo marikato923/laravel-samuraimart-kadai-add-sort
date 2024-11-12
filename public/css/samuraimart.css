@@ -270,4 +270,9 @@ label {
 button.btn-danger {
     width: 100px;
 }
+
+/* 注文履歴 */
+th, td {
+    background-color: #f8fafc !important;
+}
  
