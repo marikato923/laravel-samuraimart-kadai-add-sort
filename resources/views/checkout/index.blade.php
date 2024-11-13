@@ -1,5 +1,5 @@
 @extends('layouts.app')
- 
+
 @section('content')
 <div class="container pt-5">
     <div class="row justify-content-center">
@@ -23,22 +23,22 @@
                                     <div class="col-md-3">
                                         <a href="{{ route('products.show', $product->id) }}">
                                             @if ($product->options->image)
-                                                <img src="{{ asset($product->options->image) }}" class="img-thumbnail">
+                                                <img src="{{ asset($product->options->image) }}" class="img-thumbnail samuraimart-product-img-cart">
                                             @else
-                                                <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail">
+                                                <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-cart">
                                             @endif
                                         </a>
                                     </div>
                                     <div class="col-md-9">
                                         <div class="flex-column">
                                             <p class="fs-5 mb-2">
-                                                <a href="{{ route('products.show', $product->id) }}" class="link-dark text-decoration-none">{{ $product->name }}</a>
+                                                <a href="{{ route('products.show', $product->id) }}" class="link-dark">{{ $product->name }}</a>
                                             </p>
                                             <div class="row mb-2">
-                                                <div class="col-xxl-3">
+                                                <div class="col-xxl-2">
                                                     数量：{{ number_format($product->qty) }}
                                                 </div>
-                                                <div class="col-xxl-9">
+                                                <div class="col-xxl-10">
                                                     合計：￥{{ number_format($product->qty * $product->price) }}
                                                 </div>
                                             </div>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="col col-xxl-4">
-                    <div class="bg-white p-4 mb-4">
+                    <div class="bg-light p-4 mb-4">
                         <div class="row mb-2">
                             <div class="col-md-5">
                                 小計
@@ -97,7 +97,7 @@
                                 <button type="submit" class="btn samuraimart-submit-button text-white w-100">お支払い</a>
                             </form>
                         @else
-                            <button class="btn samuraimart-submit-button disabled w-100">お支払い</button>
+                            <button class="btn samuraimart-submit-button-disabled w-100">お支払い</button>
                         @endif
                     </div>
                 </div>
