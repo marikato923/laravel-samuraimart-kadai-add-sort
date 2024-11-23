@@ -93,27 +93,20 @@
                 <h2 class="float-left">カスタマーレビュー</h2>
             </div>
 
-            <div class="offset-1 col-11">
+            <div class="col-11">
                 <!-- 平均スコアの表示部分を追加 -->
                 @if ($reviews->count() > 0)
                     @php
-                        // 平均スコアを計算し、小数点第１位に丸める
-                        $averageScore = round($reviews->avg('score'), 1);
+                        $averageScore = round($product->reviews->avg('score') * 2) / 2;
                     @endphp
-                    <div class="row">
-                        <div>
-                            <p class="samuraimart-star-rating ml-3" data-rate="{{ $averageScore }}">
-                                <span class="average-score">{{ $averageScore }}</span>
-                            </p>
-                        </div>
-                    </div>
+                            <p class="samuraimart-star-rating mb-0" data-rate="{{ $averageScore }}">★★★★★<span class="average-score">{{ $averageScore }}</span></p>
                 @else
                     <span>レビューがありません</span>
                 @endif
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mt-1 mb-4">
                     <div class="mb-4">
                         <p>{{ number_format($reviews->total()) }}件のレビュー</p>
                     </div>

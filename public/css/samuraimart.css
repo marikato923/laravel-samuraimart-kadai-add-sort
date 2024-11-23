@@ -390,69 +390,56 @@ a img:hover {
 
 /* レビューの平均点値を表示 */
 .samuraimart-star-rating {
-  display: inline-block;
-  font-size: 30px;
+  font-size: 14px; /* フォントサイズを14pxに調整 */
   position: relative;
-  width: 150px; /* 星5つ分の幅 */
-  height: 30px;
-  overflow: hidden;
+  width: 100px;
+  height: 14px; /* 高さもフォントサイズに合わせて調整 */
+  color: #ccc;
+  display: inline-block;
 }
 
+/* 灰色の星（ベース） */
 .samuraimart-star-rating::before {
-  content: '★★★★★'; /* 背面の星（灰色） */
-  color: #ccc; /* 灰色 */
+  content: '★★★★★';
+  color: #ccc; 
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
+  width: 100%;
+  font-size: 14px; /* フォントサイズを14pxに調整 */
 }
 
+/* 色付きの星（評価分） */
 .samuraimart-star-rating::after {
-  content: '★★★★★'; /* 前面の星（評価） */
-  color: #0fbe9f; /* 評価の星（緑色） */
+  content: '★★★★★';
+  color: #0fbe9f;
   position: absolute;
   top: 0;
   left: 0;
-  width: 0; /* 初期値は0、後で評価に応じて設定 */
+  z-index: 2;
+  width: 0;
   white-space: nowrap;
-  overflow: hidden; /* 評価に応じて星を切り取る */
+  overflow: hidden;
+  font-size: 14px; /* フォントサイズを14pxに調整 */
 }
 
-.samuraimart-star-rating[data-rate="1"]::after {
-  width: 20%; /* 1つ分の星を表示 */
-}
+/* 評価の幅（0.5刻み） */
+.samuraimart-star-rating[data-rate="0"]::after { width: 0%; }
+.samuraimart-star-rating[data-rate="0.5"]::after { width: 10%; }
+.samuraimart-star-rating[data-rate="1"]::after { width: 20%; }
+.samuraimart-star-rating[data-rate="1.5"]::after { width: 30%; }
+.samuraimart-star-rating[data-rate="2"]::after { width: 40%; }
+.samuraimart-star-rating[data-rate="2.5"]::after { width: 50%; }
+.samuraimart-star-rating[data-rate="3"]::after { width: 60%; }
+.samuraimart-star-rating[data-rate="3.5"]::after { width: 70%; }
+.samuraimart-star-rating[data-rate="4"]::after { width: 80%; }
+.samuraimart-star-rating[data-rate="4.5"]::after { width: 90%; }
+.samuraimart-star-rating[data-rate="5"]::after { width: 100%; }
 
-.samuraimart-star-rating[data-rate="2"]::after {
-  width: 40%; /* 2つ分の星を表示 */
-}
-
-.samuraimart-star-rating[data-rate="3"]::after {
-  width: 60%; /* 3つ分の星を表示 */
-}
-
-.samuraimart-star-rating[data-rate="4"]::after {
-  width: 80%; /* 4つ分の星を表示 */
-}
-
-.samuraimart-star-rating[data-rate="5"]::after {
-  width: 100%; /* 5つ分の星を表示 */
-}
-
-.samuraimart-star-rating[data-rate="0.5"]::after {
-  width: 10%; /* 0.5つ分の星を表示 */
-}
-
-.samuraimart-star-rating[data-rate="1.5"]::after {
-  width: 30%; /* 1.5つ分の星を表示 */
-}
-
-.samuraimart-star-rating[data-rate="2.5"]::after {
-  width: 50%; /* 2.5つ分の星を表示 */
-}
-
-.samuraimart-star-rating[data-rate="3.5"]::after {
-  width: 70%; /* 3.5つ分の星を表示 */
-}
-
-.samuraimart-star-rating[data-rate="4.5"]::after {
-  width: 90%; /* 4.5つ分の星を表示 */
+/* 平均点の表示 */
+.average-score {
+  font-size: 14px;
+  margin-left: 10px;
+  color: #000000;
 }

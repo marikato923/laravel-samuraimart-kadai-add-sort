@@ -18,6 +18,7 @@
             @endcomponent
         </div>
         <div class="col">
+            <!-- おすすめ商品 -->
             <div class="mb-4">
                 <h2>おすすめ商品</h2>
                 <div class="row">
@@ -32,11 +33,18 @@
                             </a>
                             <div class="row">
                                 <div class="col-12">
-                                    <p class="samuraimart-product-label mt-2">
+                                    <p class="samuraimart-product-label mt-2 mb-0">
                                         <a href="{{ route('products.show', $recommend_product) }}" class="link-dark">{{ $recommend_product->name }}</a>
-                                        <br>
-                                        <label>￥{{ number_format($recommend_product->price) }}</label>
                                     </p>
+                                    
+                                    <!-- 平均評価の表示 -->
+                                    @php
+                                    $averageScore = $recommend_product->reviews->avg('score') ?? 0; 
+                                    @endphp
+                                        <p class="samuraimart-star-rating mb-0" data-rate="{{ round($averageScore, 1) }}">★★★★★<span class="ms-2 text-muted">({{ round($averageScore, 1) > 0 ? round($averageScore, 1) : 'まだレビューがありません。' }})</span></p>
+                                    
+                                    <br>
+                                    <label class=mt-1>￥{{ number_format($recommend_product->price) }}</label>
                                 </div>
                             </div>
                         </div>
@@ -44,6 +52,7 @@
                 </div>
             </div>
 
+            <!-- 新着商品 -->
             <div class="mb-4">
                 <h2>新着商品</h2>
                 <div class="row">
@@ -58,11 +67,18 @@
                             </a>
                             <div class="row">
                                 <div class="col-12">
-                                    <p class="samuraimart-product-label mt-2">
+                                    <p class="samuraimart-product-label mt-2 mb-0">
                                         <a href="{{ route('products.show', $recently_product) }}" class="link-dark">{{ $recently_product->name }}</a>
-                                        <br>
-                                        <label>￥{{ number_format($recently_product->price) }}</label>
                                     </p>
+                                    
+                                    <!-- 平均評価の表示 -->
+                                    @php
+                                    $averageScore = $recently_product->reviews->avg('score') ?? 0; 
+                                    @endphp
+                                        <p class="samuraimart-star-rating mb-0" data-rate="{{ round($averageScore, 1) }}">★★★★★<span class="ms-2 text-muted">({{ round($averageScore, 1) > 0 ? round($averageScore, 1) : 'まだレビューがありません。' }})</span></p>
+                                    
+                                    <br>
+                                    <label class='mt-1'>￥{{ number_format($recently_product->price) }}</label>
                                 </div>
                             </div>
                         </div>
@@ -70,6 +86,7 @@
                 </div>
             </div>
 
+            <!-- 注目商品 -->
             <div class="mb-4">
                 <h2>注目商品</h2>
                 <div class="row">
@@ -84,11 +101,18 @@
                             </a>
                             <div class="row">
                                 <div class="col-12">
-                                    <p class="samuraimart-product-label mt-2">
+                                    <p class="samuraimart-product-label mt-2 mb-0">
                                         <a href="{{ route('products.show', $featured_product) }}" class="link-dark">{{ $featured_product->name }}</a>
-                                        <br>
-                                        <label>￥{{ number_format($featured_product->price) }}</label>
                                     </p>
+                                    
+                                    <!-- 平均評価の表示 -->
+                                    @php
+                                    $averageScore = $featured_product->reviews->avg('score') ?? 0; 
+                                    @endphp
+                                        <p class="samuraimart-star-rating mb-0" data-rate="{{ round($averageScore, 1) }}">★★★★★<span class="ms-2 text-muted">({{ round($averageScore, 1) > 0 ? round($averageScore, 1) : 'まだレビューがありません。' }})</span></p>
+                                
+                                    <br>
+                                    <label class="mt-1">￥{{ number_format($featured_product->price) }}</label>
                                 </div>
                             </div>
                         </div>

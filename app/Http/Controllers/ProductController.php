@@ -28,7 +28,6 @@ class ProductController extends Controller
             $sorted = $request->input('select_sort');
         }
     
-        // 商品の取得と平均評価の計算
         if ($request->category !== null) {
             $products = Product::where('category_id', $request->category)
                 ->sortable($sort_query)
@@ -54,10 +53,7 @@ class ProductController extends Controller
             $major_category = null;
         }
     
-        // 各商品の平均評価を計算
-        foreach ($products as $product) {
-            $product->averageScore = round($product->reviews->avg('score'), 1);  // 小数第1位で四捨五入
-        }
+        $products->load('reviews'); // レビュー情報をあらかじめロードする
     
         // カテゴリ情報を取得
         $categories = Category::all();

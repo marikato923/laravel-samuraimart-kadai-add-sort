@@ -65,18 +65,17 @@
                         </a>
                         <div class="row">
                             <div class="col-12">
-                                <p class="samuraimart-product-label mt-2">
-                                    <a href="{{ route('products.show', $product) }}" class="link-dark">{{ $product->name }}</a>
+                                <p class="samuraimart-product-label mt-2 mb-1">
+                                    <a href="{{ route('products.show', $product) }}" class="link-dark">{{ $product->name }}</a></p>
                                     
-                                    <!-- 星評価をここに追加 -->
-                                    <div class="samuraimart-star-rating" data-rate="{{ round($product->averageScore * 2) / 2 }}"></div>
-                                    
-                                    <!-- 平均評価の表示 -->
-                                    <span class="ms-2 text-muted">({{ $product->averageScore }})</span>
-                                    
-                                    <br>
-                                    <label>￥{{ number_format($product->price) }}</label>
-                                </p>
+                                      <!-- 平均評価の表示 -->      
+                                    @php
+                                        // 平均評価を0.5刻みに切り捨てる
+                                        $averageScore = round($product->reviews->avg('score') * 2) / 2;
+                                    @endphp
+                                        <p class="samuraimart-star-rating mb-0" data-rate="{{ $averageScore }}">★★★★★<span class="ms-2 text-muted">({{ round($averageScore, 1) ?? 'まだレビューがありません。' }})</span></p>
+                                <br>       
+                                <label class="mt-1">￥{{ number_format($product->price) }}</label>
                             </div>
                         </div>
                     </div>
