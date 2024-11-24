@@ -41,7 +41,10 @@
                                     @php
                                     $averageScore = $recommend_product->reviews->avg('score') ?? 0; 
                                     @endphp
-                                        <p class="samuraimart-star-rating mb-0" data-rate="{{ round($averageScore, 1) }}">★★★★★<span class="ms-2 text-muted">({{ round($averageScore, 1) > 0 ? round($averageScore, 1) : 'まだレビューがありません。' }})</span></p>
+                                        <p class="samuraimart-star-rating mb-0">
+                                            <span class="average-star "data-rate="{{ round($averageScore, 1) }}"></span>
+                                            <span class="ms-2 text-muted">({{ round($averageScore, 1) > 0 ? round($averageScore, 1) : 'まだレビューがありません。' }})</span>
+                                        </p>
                                     
                                     <br>
                                     <label class=mt-1>￥{{ number_format($recommend_product->price) }}</label>
@@ -75,8 +78,10 @@
                                     @php
                                     $averageScore = $recently_product->reviews->avg('score') ?? 0; 
                                     @endphp
-                                        <p class="samuraimart-star-rating mb-0" data-rate="{{ round($averageScore, 1) }}">★★★★★<span class="ms-2 text-muted">({{ round($averageScore, 1) > 0 ? round($averageScore, 1) : 'まだレビューがありません。' }})</span></p>
-                                    
+                                        <p class="samuraimart-star-rating mb-0">
+                                            <span class="average-star" data-rate="{{ round($averageScore, 1) }}"></span>
+                                            <span class="ms-2 text-muted">({{ round($averageScore, 1) > 0 ? round($averageScore, 1) : 'まだレビューがありません。' }})</span>
+                                        </p>
                                     <br>
                                     <label class='mt-1'>￥{{ number_format($recently_product->price) }}</label>
                                 </div>
@@ -109,7 +114,10 @@
                                     @php
                                     $averageScore = $featured_product->reviews->avg('score') ?? 0; 
                                     @endphp
-                                        <p class="samuraimart-star-rating mb-0" data-rate="{{ round($averageScore, 1) }}">★★★★★<span class="ms-2 text-muted">({{ round($averageScore, 1) > 0 ? round($averageScore, 1) : 'まだレビューがありません。' }})</span></p>
+                                        <p class="samuraimart-star-rating mb-0">
+                                            <span class="average-star "data-rate="{{ round($averageScore, 1) }}"></span>
+                                            <span class="ms-2 text-muted">({{ round($averageScore, 1) > 0 ? round($averageScore, 1) : 'まだレビューがありません。' }})</span>
+                                        </p>
                                 
                                     <br>
                                     <label class="mt-1">￥{{ number_format($featured_product->price) }}</label>

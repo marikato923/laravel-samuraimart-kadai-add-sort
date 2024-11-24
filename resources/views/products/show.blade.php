@@ -99,8 +99,11 @@
                     @php
                         $averageScore = round($product->reviews->avg('score') * 2) / 2;
                     @endphp
-                            <p class="samuraimart-star-rating mb-0" data-rate="{{ $averageScore }}">★★★★★<span class="average-score">{{ $averageScore }}</span></p>
-                @else
+                            <p class="samuraimart-star-rating mb-0">
+                             <span class="average-star" data-rate="{{ $averageScore }}"></span>
+                             <span class="ms-2 text-muted">({{ round($averageScore, 1) ?? 'まだレビューがありません。' }})</span>
+                            </p>
+                @else      
                     <span>レビューがありません</span>
                 @endif
             </div>

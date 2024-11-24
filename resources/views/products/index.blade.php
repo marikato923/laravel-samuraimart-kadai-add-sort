@@ -73,7 +73,10 @@
                                         // 平均評価を0.5刻みに切り捨てる
                                         $averageScore = round($product->reviews->avg('score') * 2) / 2;
                                     @endphp
-                                        <p class="samuraimart-star-rating mb-0" data-rate="{{ $averageScore }}">★★★★★<span class="ms-2 text-muted">({{ round($averageScore, 1) ?? 'まだレビューがありません。' }})</span></p>
+                                        <p class="samuraimart-star-rating mb-0" >
+                                            <span class="average-star" data-rate="{{ $averageScore }}"></span>
+                                            <span class="ms-2 text-muted">({{ round($averageScore, 1) ?? 'まだレビューがありません。' }})</span>
+                                        </p>
                                 <br>       
                                 <label class="mt-1">￥{{ number_format($product->price) }}</label>
                             </div>

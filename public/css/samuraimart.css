@@ -392,17 +392,21 @@ a img:hover {
 .samuraimart-star-rating {
   font-size: 14px; /* フォントサイズを14pxに調整 */
   position: relative;
-  width: 100px;
   height: 14px; /* 高さもフォントサイズに合わせて調整 */
   color: #ccc;
   display: inline-block;
 }
 
+.average-star {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
 /* 灰色の星（ベース） */
-.samuraimart-star-rating::before {
+.average-star::before {
   content: '★★★★★';
-  color: #ccc; 
-  position: absolute;
+  color: #ccc;
   top: 0;
   left: 0;
   z-index: 1;
@@ -411,7 +415,7 @@ a img:hover {
 }
 
 /* 色付きの星（評価分） */
-.samuraimart-star-rating::after {
+.average-star::after {
   content: '★★★★★';
   color: #0fbe9f;
   position: absolute;
@@ -425,17 +429,17 @@ a img:hover {
 }
 
 /* 評価の幅（0.5刻み） */
-.samuraimart-star-rating[data-rate="0"]::after { width: 0%; }
-.samuraimart-star-rating[data-rate="0.5"]::after { width: 10%; }
-.samuraimart-star-rating[data-rate="1"]::after { width: 20%; }
-.samuraimart-star-rating[data-rate="1.5"]::after { width: 30%; }
-.samuraimart-star-rating[data-rate="2"]::after { width: 40%; }
-.samuraimart-star-rating[data-rate="2.5"]::after { width: 50%; }
-.samuraimart-star-rating[data-rate="3"]::after { width: 60%; }
-.samuraimart-star-rating[data-rate="3.5"]::after { width: 70%; }
-.samuraimart-star-rating[data-rate="4"]::after { width: 80%; }
-.samuraimart-star-rating[data-rate="4.5"]::after { width: 90%; }
-.samuraimart-star-rating[data-rate="5"]::after { width: 100%; }
+.average-star[data-rate="0"]::after { width: 0%; }
+.average-star[data-rate="0.5"]::after { width: 10%; }
+.average-star[data-rate="1"]::after { width: 20%; }
+.average-star[data-rate="1.5"]::after { width: 30%; }
+.average-star[data-rate="2"]::after { width: 40%; }
+.average-star[data-rate="2.5"]::after { width: 50%; }
+.average-star[data-rate="3"]::after { width: 60%; }
+.average-star[data-rate="3.5"]::after { width: 70%; }
+.average-star[data-rate="4"]::after { width: 80%; }
+.average-star[data-rate="4.5"]::after { width: 90%; }
+.average-star[data-rate="5"]::after { width: 100%; }
 
 /* 平均点の表示 */
 .average-score {
