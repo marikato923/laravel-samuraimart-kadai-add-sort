@@ -26,7 +26,19 @@
                         <h1>
                             {{$product->name}}
                         </h1>
-                        <p>
+                        <div class="col-11">
+                            <!-- 平均スコアの表示部分を追加 -->
+                            @if ($reviews->count() > 0)
+                                @php
+                                    $averageScore = round($product->reviews->avg('score') * 2) / 2;
+                                @endphp
+                                        <p class="samuraimart-star-rating mb-2">
+                                            <span class="average-star" data-rate="{{ $averageScore }}"></span>
+                                            <span class="ms-2 text-muted">({{ round($averageScore, 1) ?? 'まだレビューがありません。' }})</span>
+                                        </p>
+                            @endif
+                        </div>
+                        <p class="mt-2">
                             {{$product->description}}
                         </p>
                     </div>
@@ -103,8 +115,6 @@
                              <span class="average-star" data-rate="{{ $averageScore }}"></span>
                              <span class="ms-2 text-muted">({{ round($averageScore, 1) ?? 'まだレビューがありません。' }})</span>
                             </p>
-                @else      
-                    <span>レビューがありません</span>
                 @endif
             </div>
 

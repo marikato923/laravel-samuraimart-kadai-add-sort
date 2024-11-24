@@ -45,7 +45,6 @@
                                             <span class="average-star "data-rate="{{ round($averageScore, 1) }}"></span>
                                             <span class="ms-2 text-muted">({{ round($averageScore, 1) > 0 ? round($averageScore, 1) : 'まだレビューがありません。' }})</span>
                                         </p>
-                                    
                                     <br>
                                     <label class=mt-1>￥{{ number_format($recommend_product->price) }}</label>
                                 </div>
